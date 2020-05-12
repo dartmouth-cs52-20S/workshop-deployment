@@ -27,6 +27,7 @@ User images: Images created by users. Typically build on base images
 
 ####  Container
 Containers are created based on the  Docker image files and run the actual application. We create a container using 
+
 ```docker run [image]```
 
 #### Docker Hub
