@@ -1,63 +1,3 @@
-# CS52 Workshops:  TITLE OF YOUR WORKSHOP
-
-![](http://i.giphy.com/eUh8NINbZf9Ys.gif)
-
-Brief motivation here as well as in presentation
-
-## Overview
-
-Summary of what we're about to do.
-
-## Setup
-
-Any necessary setup steps
-
-## Step by Step
-
-* Explanations of the what **and** the why behind each step. Try to include:
-  * higher level concepts
-  * best practices
-
-Remember to explain any notation you are using.
-
-```javascript
-/* and use code blocks for any code! */
-```
-
-![screen shots are helpful](img/screenshot.png)
-
-:sunglasses: GitHub markdown files [support emoji notation](http://www.emoji-cheat-sheet.com/)
-
-Here's a resource for [github markdown](https://guides.github.com/features/mastering-markdown/).
-
-## Use collapsible sections when you are giving away too much code
-<details>
- <summary>Click to expand!</summary>
- 
- ```js
- // some code
- console.log('hi');
- ```
-</details>
-
-
-
-## Summary / What you Learned
-
-* [ ] can be checkboxes
-
-## Reflection
-
-*2 questions for the workshop participants to answer (very short answer) when they submit the workshop. These should try to get at something core to the workshop, the what and the why.*
-
-* [ ] 2 reflection questions
-* [ ] 2 reflection questions
-
-
-## Resources
-
-* cite any resources
-
 # CS52 Workshop: Deployment with Docker and VMs
 
 ## Why should you care?
@@ -86,7 +26,7 @@ Official image: Images officially maintained and supported by Docker (one word l
 User images: Images created by users. Typically build on base images
 
 ####  Container
-Containers are created based on the  Docker image files and run the actual application. You can think of a container as an *instance* of a Docker image. We create a container using ```docker run [image]```
+Containers are created based on the  Docker image files and run the actual application. We create a container using ```docker run [image]```
 
 #### Docker Hub
 https://hub.docker.com/
@@ -117,9 +57,7 @@ Docker's```pull``` command fetches the Busybox image from the Docker Resgistry (
 
 2. Now we will run our first container! Execute ```docker run busybox```.
 
-Hmm, nothing happened, right? Is something wrong? No! When ```run``` is called Docker finds the image, in this case busybox, loads the container, and runs the command in the container. In this case, we did not specify a command, so Docker simply found the image, and loaded the container. 
-
-Now, run ```docker run busybox echo "hello from busybox"```. Here we specify a command to be run inside the container. Particularly, the ```echo``` command is run inside the container, and, thus, we see the output: "hello from busybox." Once, the command is executed, the Docker exits the container! Notice how quickly this entire process was accomplished!
+Hmm, nothing happened, right? Is something wrong? No! When ```run``` is called Docker finds the image, in this case busybox, loads the container, and runs the command in the container. In this case, we did not specify a command, so Docker simply found the image, and loaded the container. Now, run ```docker run busybox echo "hello from busybox"```. Here we specify a command to be run inside the container. Particularly, the ```echo``` command is run inside the container, and, thus, we see the output: "hello from busybox." Once, the command is executed, the Docker exits the container! Notice how quickly this entire process was accomplished!
 
 3. Let's see what containers are currently running.
 Run ```docker ps```. This command shows all of the containers that are currently running and their "process statuses" (hence ps). Nothing is currently running, so there is only a blank line. Not that interesting, huh? Now try ```docker ps -a```. This option shows all of the containers that have run. Note that the "Status" indicates that the containers have recently exited. Much more interesting!
@@ -142,7 +80,6 @@ Do we really want all these used containers? Time to ~Tidy Up~! First, check whi
 ## Using Docker to Run Cool and Fun Web Applications
 
 Let's pull an premade image from the Docker Registry that contains a simple bulletin board application (https://docs.docker.com/get-started/part2/). The application is written in Node.js and requires Bootstrap and ejs. Normally we would have to add bootstrap and ejs through yarn. But these dependencies are already included in the image that you will pull. 
-
 Run ```docker run mshakeel1/node-bulletin-board-ex``` (note that this implicitly calls `docker pull mshakeel1/node-bulletin-board-ex` to download the image from the Docker Registry). You should see the following:
 ```
 > vue-event-bulletin@1.0.0 start /usr/src/app
@@ -150,12 +87,12 @@ Run ```docker run mshakeel1/node-bulletin-board-ex``` (note that this implicitly
 
 Magic happens on port 8080...
 ```
-The server is running but how do you access the website? What port should we use to see the website? Despite the "magic" happening, the client is actually not exposing any ports so we need to re-run the docker run a command to publish ports. We will also detach our container from terminal, so we can close the terminal and keep our container running. Try ```docker run -p 8800:8080 -d --name bulletin mshakeel1/node-bulletin-board-ex```. The ```-d``` option detaches the container (ensures that the container runs in the background and does not take up space in our terminal). The --name option gives the container a name to make it easy to refer to it later. The -p option (short for --publish) asks Docker to forward traffic incoming on the host's port 8800, to the container's port 8080. Containers have their own ports, so if you want to reach one from the host computer, you have to forward traffic to it with the -p option. We can see the port that the website is hosted at by running ```docker port bulletin```. In this case, our container's name is "bulletin" as we specified in the command, but for a general container you would use ```docker port YOUR_CONTAINER_NAME```.
+The server is running but how do you access the website? What port should we use to see the website? Despite the "magic happening," the client is actually not exposing any ports so we need to re-run the docker run a command to publish ports. We will also detach our container from terminal, so we can close the terminal and keep our container running. Try ```docker run -p 8800:8080 -d --name bulletin mshakeel1/node-bulletin-board-ex```. The ```-d``` option detaches the container (ensures that the container runs in the background and does not take up space in our terminal). The --name option gives the container a name to make it easy to refer to it later. The -p option (short for --publish) asks Docker to forward traffic incoming on the host's port 8800, to the container's port 8080. Containers have their own ports, so if you want to reach one from the host computer, you have to forward traffic to it with the -p option. We can see the port that the website is hosted at by running ```docker port bulletin```. In this case, our container's name is "bulletin" as we specified in the command, but for a general container you would use ```docker port YOUR_CONTAINER_NAME```.
 
 Since we are using Docker Playground, we can navigate to the port by clicking on the hyperLinks associated with the Port at the top of the Plaground. A hyperlink should appear for the "8800" port. If it doesn't, click on "Open Port" at the top of the screen and type: 8800. Click "ok". You should be led to the bulletin board application that looks like this: 
 ![](https://i.imgur.com/LrJ2fXE.jpg)
 
-Voila! You just ran a web application that depends on Node.js, Bootstrap, ejs, and other dependencies, without having to download them yourself!
+Voila! You just ran a web application that depends on Node.js, Bootstrap, ejs, and other dependencies, without having to download them yourself! p
 
 
 Once you have viewed the application, you can stop the container by running ```docker stop bulletin```.
@@ -266,9 +203,20 @@ script_python3 ran successfully
 What happens if you try to run `script_python2` in the `environment_python3` container? Does that make sense?
 
 There you have it! If you made it this far, you've successfully managed projects with separate dependencies using docker containers.
+
+## Summary
+* [ ] Learned some key Docker terminology
+* [ ] Pulled an image from Docker hub and ran it on your local machine
+* [ ] Created your very own Docker image (in fact two of them)
+* [ ] Had the time of your life
+
 ## Questions
 1. What is the difference between a virtual machine and a container?
 2. Give an example of a situation (either from your experience or a hypothetical one) in which it would be helpful to use docker to manage an environment.
 
 ## Citations
 This tutorial was adopted from https://docker-curriculum.com and https://docs.docker.com/get-started/.
+
+## Resources
+Want to learn more about Vagrant? Check out https://www.vagrantup.com/intro/index.html or https://opensource.com/resources/vagrant
+   Docker more your speed? See the official introduction https://docker-curriculum.com/ or this well done introductory video https://www.youtube.com/watch?v=pGYAg7TMmp0
