@@ -26,7 +26,8 @@ Official image: Images officially maintained and supported by Docker (one word l
 User images: Images created by users. Typically build on base images
 
 ####  Container
-Containers are created based on the  Docker image files and run the actual application. We create a container using ```docker run [image]```
+Containers are created based on the  Docker image files and run the actual application. We create a container using 
+```docker run [image]```
 
 #### Docker Hub
 https://hub.docker.com/
@@ -46,9 +47,8 @@ We will use Docker Playground to simulate Docker in a web-browser rather than do
 ## Running Docker
 Once you have logged into Docker Playground, click "+Add New Instance" to create a Docker enviroment, which we will be using for the rest of the tutorial! To test Docker, run the following: ```docker run hello-world```
 
-{Insert Collapseable}
-[A few lines into the output you should see the following: ```Hello from Docker!
-This message shows that your installation appears to be working correctly.```]
+A few lines into the output you should see the following: ```Hello from Docker!
+This message shows that your installation appears to be working correctly.```
 
 Next, we will use the [Busybox](https://en.wikipedia.org/wiki/BusyBox) container.
 
