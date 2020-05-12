@@ -19,10 +19,10 @@ $ docker images
 
 TAG refers to a particular snapshot of the image; you can thing of an Image as a Git repository. Images can be committed with changes and have multiple versions. The TAG for a Docker image is similar to a commit for a Git repository.
 
-Base images: Images with no parent image (usually images with an OS like ubuntu, busybox, debian)
+Base images: Images with no parent image (usually images with an OS like ubuntu, busybox, debian) 
 Child images: Images that build on base images and add additional functionality
 
-Official image: Images officially maintained and supported by Docker (one word long, typically)
+Official image: Images officially maintained and supported by Docker (one word long, typically) 
 User images: Images created by users. Typically build on base images
 
 ####  Container
@@ -46,7 +46,9 @@ We will use Docker Playground to simulate Docker in a web-browser rather than do
 **Note**: You only are allowed four (4) hours at a time on docker playground before all your work is deleted. This should be more than enough time to complete the tutorial, but make sure you don't stop part of the way through intending to come back and finish later. Unfortunately this is the price we pay for the playground being offered for free, but it is hard to complain.
 
 ## Running Docker
-Once you have logged into Docker Playground, click "+Add New Instance" to create a Docker enviroment, which we will be using for the rest of the tutorial! To test Docker, run the following: ```docker run hello-world```
+Once you have logged into Docker Playground, click "+Add New Instance" to create a Docker enviroment, which we will be using for the rest of the tutorial! To test Docker, run the following: 
+```docker run hello-world``` 
+What's happening in the above command? Docker first searches your local system for an image called "hello-world". When it is unable to find that image, it searches the Docker Registry on Docker Hub for this image. As you would imagine, "hellow-world" is an "official" image, maintained and supported by Docker itself. Docker pulls this image from the Registry onto the computer, and runs a container based on that image. So, ```docker run [image]``` can serve dual purposes if the image is not located on your computer -- pull + run!
 
 A few lines into the output you should see the following: ```Hello from Docker!
 This message shows that your installation appears to be working correctly.```
